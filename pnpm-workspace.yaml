@@ -1,0 +1,6 @@
+packages:
+- "api"
+- "admin"
+- "store"
+allowBuilds:
+  unrs-resolver: false
