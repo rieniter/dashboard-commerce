@@ -1,0 +1,46 @@
+name: CI Pipeline
+
+on:
+  push:
+    branch: [main]
+    paths-ignore:
+    - '**.md'
+  pull_request:
+    branch: [main]
+    paths-ignore:
+    - '**.md'
+
+jobs:
+  lint:
+    name: Lint, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup PNPM via Corepack
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 12.5.1
+
+      # 3. Setup Node.js with PNPM caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      # 4. Install dependencies deterministically
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 5. Run Turborepo Lint
+      - name: Run Linter
+        run: pnpm turbo run lint
+
+      # 6. Verify Docker build
+      - name: Build API Docker Image
+        run: docker build -f Dockerfile.api -t api-service:test .

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "pnpm --recursive --parallel run dev"
+    "dev": "turbo start:dev",
+    "build": "turbo build",
+    "lint": "turbo lint"
   },
   "keywords": [],
   "author": "rieniter",
@@ -18,5 +19,12 @@
     }
   },
   "packageManager": "pnpm@12.5.1",
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0 <27.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "turbo": "^2.11.6"
+  }
 }
