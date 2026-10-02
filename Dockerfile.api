@@ -1,0 +1,28 @@
+FROM node:24-alpine AS base
+ENV PATH="/root/.local/share/pnpm/bin:$PATH"
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /app
+
+FROM base as pruner
+
+RUN pnpm add -g turbo
+
+COPY . .
+RUN turbo prune --scope=api --docker
+#-----------
+FROM base as development
+ENV NODE_ENV=development
+
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/pnpm-lock.yaml ./
+
+
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --frozen-lockfile
+
+COPY --from=pruner /app/out/full/ .
+
+EXPOSE 3000
+
+CMD ["pnpm", "turbo", "run", "start:dev", "--filter=api"]
