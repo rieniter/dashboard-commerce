@@ -3,4 +3,5 @@ packages:
 - "admin"
 - "store"
 allowBuilds:
+  esbuild: false
   unrs-resolver: false
