@@ -3,5 +3,6 @@ packages:
 - "admin"
 - "store"
 allowBuilds:
+  bcrypt: false
   esbuild: false
   unrs-resolver: false
