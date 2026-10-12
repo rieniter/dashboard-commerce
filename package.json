@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "turbo start:dev",
     "build": "turbo build",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "test": "turbo test"
   },
   "keywords": [],
   "author": "rieniter",
