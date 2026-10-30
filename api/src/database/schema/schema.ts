@@ -40,6 +40,6 @@ export const products = pg.pgTable('products',{
     disContinued: pg.boolean().default(false),
     createdAt: pg.timestamp().defaultNow().notNull()
 }, (table) => [
-        sql`CHECK(${table.unitPrice} >= 0)`
+        pg.check('unit_price_non_negative', sql`${table.unitPrice} >= 0`)
     ]
 );
