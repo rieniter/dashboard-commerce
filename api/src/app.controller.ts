@@ -10,23 +10,5 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/roles')
-  getRoles():string{
-    return "This is roles";
-  }
-
-  @Get('/users')
-  getUsers():string{
-    return "This is users";
-  }
-
-  @Get('/categories')
-  getCategirues():string{
-    return "This is categories";
-  }
-
-  @Get('/products')
-  getProducts():string{
-    return "This is product";
-  }
+  
 }
