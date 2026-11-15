@@ -1,5 +1,5 @@
-import * as pg from 'drizzle-orm/pg-core'
-import {sql} from 'drizzle-orm'
+import * as pg from 'drizzle-orm/pg-core';
+import {sql} from 'drizzle-orm';
 
 
 export const roles = pg.pgTable('roles',{
@@ -20,6 +20,9 @@ export const users = pg.pgTable('users',{
     image: pg.varchar({length: 500}),
     createdAt: pg.timestamp().defaultNow().notNull()
 });
+
+export type NewUser = typeof users.$inferInsert;
+export type User = typeof users.$inferSelect;
 
 export const categories = pg.pgTable('categories',{
     id: pg.serial().primaryKey(),

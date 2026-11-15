@@ -1,6 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRoleDto } from './dto/create-role.dto.js';
 import { UpdateRoleDto } from './dto/update-role.dto.js';
+import * as dotenv from "dotenv";
+import { expand } from 'dotenv-expand';
+
+expand(dotenv.config());
+
+console.log(`Load Database: `, process.env.DATABASE_URL);
+if(!process.env.DATABASE_URL){
+    throw new Error(`DATABASE_URL environment variable is missing in api/.env'`);
+}
+
 
 @Injectable()
 export class RolesService {

@@ -1,8 +1,8 @@
-import {drizzle} from "drizzle-orm/postgres-js"
-import * as schema from "./../schema/schema.js"
-import {sql} from "drizzle-orm"
+import {drizzle} from "drizzle-orm/postgres-js";
+import * as schema from "./../schema/schema.js";
+import {sql} from "drizzle-orm";
 import postgres from 'postgres';
-import {faker, id_ID} from "@faker-js/faker"
+import {faker, id_ID} from "@faker-js/faker";
 import * as dotenv from "dotenv";
 import { expand } from 'dotenv-expand';
 
