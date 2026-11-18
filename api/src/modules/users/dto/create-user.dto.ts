@@ -1,5 +1,5 @@
 import {IsDateString, IsEmail, IsNotEmpty, IsOptional, IsString, IsUrl, MaxLength, MinLength, } from 'class-validator'
-import { NewUser } from "../../../database/schema/schema.js";
+import { NewUser } from "../users.schema.js"
 
 export class CreateUserDto implements Omit<NewUser, 'id' | 'createdAt'> {
     @IsEmail()
