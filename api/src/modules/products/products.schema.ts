@@ -1,6 +1,5 @@
 import * as pg from 'drizzle-orm/pg-core';
-import {sql} from 'drizzle-orm';
-import {relations} from 'drizzle-orm'
+import {sql, relations} from 'drizzle-orm';
 import {categories} from '../categories/categories.schema.js'
 
 export const products = pg.pgTable('products',{
@@ -26,5 +25,5 @@ export const productsCategories = pg.pgTable('productsCategories', {
 
 
 export const productsRelations = relations(products, ({many}) => ({
-    productCategories: many(pr)
+    productCategories: many(productsCategories)
 }));
