@@ -2,11 +2,11 @@ name: CI Pipeline
 
 on:
   push:
-    branch: [main]
+    branches: [main]
     paths-ignore:
     - '**.md'
   pull_request:
-    branch: [main]
+    branches: [main]
     paths-ignore:
     - '**.md'
 
@@ -41,6 +41,12 @@ jobs:
       - name: Run Linter
         run: pnpm turbo run lint
 
-      # 6. Verify Docker build
+      # 6. Run Nest test:
+      - name: Run API tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/
+        run: pnpm --filter api test
+
+      # 7. Verify Docker build
       - name: Build API Docker Image
         run: docker build -f Dockerfile.api -t api-service:test .
