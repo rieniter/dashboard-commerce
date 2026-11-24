@@ -43,6 +43,8 @@ jobs:
 
       # 6. Run Nest test:
       - name: Run API tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/
         run: pnpm --filter api test
 
       # 7. Verify Docker build
