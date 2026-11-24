@@ -23,9 +23,11 @@ export class UsersService {
   async findOne(id: string) {
     const [user] = await this.db
     .select({
-      field1: schema.users.email
+      email: schema.users.email,
+      role: schema.roles.id
     })
     .from(schema.users)
+    .innerJoin(schema.roles, eq(schema.users.roleID, schema.roles.id))
     .where(
       and(eq(schema.users.id, id))
     );

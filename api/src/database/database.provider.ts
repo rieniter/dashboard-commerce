@@ -18,6 +18,6 @@ export const databaseProvider = {
         const option = {prepare: false, max:10};
         const queryClient = postgres(connectionString, option);
 
-        return drizzle(queryClient, {schema});
+        return drizzle(queryClient, {schema, casing: "snake_case"});
     }
 }
